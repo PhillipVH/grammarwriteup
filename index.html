@@ -13192,110 +13192,10 @@ Learner can issue two types of questions to the Oracle: membership queries and e
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
 <span class="kn">import</span> <span class="nn">tabulate</span>
+<span class="kn">from</span> <span class="nn">tabledefs</span> <span class="k">import</span> <span class="o">*</span>
 
-<span class="n">table1</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇1&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">]]</span>
-
-<span class="n">table2</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇2&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">]]</span>
-
-<span class="n">table3</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇3&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">]]</span>
-
-<span class="n">table4</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇4&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">]]</span>
-
-<span class="n">table5</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇5&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">],]</span>
-
-<span class="n">table6</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇6&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],]</span>
-
-<span class="n">table7</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇7&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],]</span>
-
-<span class="n">table8</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇8&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">]</span>
-
-<span class="n">table9</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇9&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3 ⋅ c3 &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3  &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">]</span>
-
-<span class="n">table10</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇10&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3 ⋅ c3&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3 ⋅ c3 &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3  &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">]</span>
-
-<span class="n">table11</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;𝑇11&quot;</span><span class="p">,</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3 ⋅ c3&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;𝜖&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4&quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c0&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c3&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;c1 ⋅ c2 ⋅ c2&quot;</span><span class="p">,</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">],</span>
-
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3 ⋅ c3 &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-          <span class="p">[</span><span class="s2">&quot;c1 ⋅ c4 ⋅ c3  &quot;</span><span class="p">,</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">],</span>
-         <span class="p">]</span>
+<span class="k">def</span> <span class="nf">display_table</span><span class="p">(</span><span class="n">table</span><span class="p">):</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
 </pre></div>
 
     </div>
@@ -13331,7 +13231,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table1</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13417,7 +13317,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table2</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13465,7 +13365,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table3</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13529,7 +13429,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table4</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table4</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13594,7 +13494,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table5</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table5</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13645,7 +13545,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table6</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table6</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13696,7 +13596,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table7</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table7</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13762,7 +13662,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table8</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table8</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13829,7 +13729,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table9</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table9</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13883,7 +13783,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table10</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13937,7 +13837,7 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table11</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s1">&#39;html&#39;</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">table11</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13982,6 +13882,492 @@ Learner can issue two types of questions to the Oracle: membership queries and e
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="t11.jpeg" alt="T11"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Broken-Example-(TACAS2017-FUBAR)">Broken Example (TACAS2017 FUBAR)<a class="anchor-link" href="#Broken-Example-(TACAS2017-FUBAR)">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The target automaton has a similar structure to the original TACAS example, but with predicates changed to be less <em>convienient</em>, in the sense that they overlap partially or are totally disjoint.</p>
+<p><img src="targetfub.jpeg" alt="targetfub"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Comparison-with-symbolicautomata">Comparison with <code>symbolicautomata</code><a class="anchor-link" href="#Comparison-with-symbolicautomata">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For comparison sake, <code>symbolicautomata</code> is able to learn this.</p>
+<p><img src="learnme.png" alt="learnme"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Constraint $(c_1 = [21\ \inf], +)$ is sampled from a set of constraint / acceptance pairs obtained from a symbolic execution of depth 1 via Coastal.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇1</td><td>𝜖</td></tr>
+<tr><td>𝜖 </td><td>+</td></tr>
+<tr><td>  </td><td> </td></tr>
+<tr><td>c1</td><td>+</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counter-Example-1">Counter Example 1<a class="anchor-link" href="#Counter-Example-1">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first counter example is $(c_1 = [0\ 20], -)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇2</td><td>𝜖</td></tr>
+<tr><td>𝜖 </td><td>+</td></tr>
+<tr><td>  </td><td> </td></tr>
+<tr><td>c1</td><td>+</td></tr>
+<tr><td>c2</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apply <code>close</code> to the table. Constraint $c_3 = [0\ 24]$ is sampled from a set of constraints collected by Coastal, where the first constraint in the path condition was $c_2$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇3   </td><td>𝜖</td></tr>
+<tr><td>𝜖    </td><td>+</td></tr>
+<tr><td>c2   </td><td>-</td></tr>
+<tr><td>     </td><td> </td></tr>
+<tr><td>c1   </td><td>+</td></tr>
+<tr><td>c2⋅c3</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counter-Example-2">Counter Example 2<a class="anchor-link" href="#Counter-Example-2">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The second counter example is $(c_2 \cdot c_4, -)$, with $c_4 = [25\ 30]$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇4   </td><td>𝜖</td></tr>
+<tr><td>𝜖    </td><td>+</td></tr>
+<tr><td>c2   </td><td>-</td></tr>
+<tr><td>     </td><td> </td></tr>
+<tr><td>c1   </td><td>+</td></tr>
+<tr><td>c2⋅c3</td><td>-</td></tr>
+<tr><td>c2⋅c4</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counter-Example-3">Counter Example 3<a class="anchor-link" href="#Counter-Example-3">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The third counter example is $(c_2 \cdot c_5, -)$, with $c_5 = [99\ 99]$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇5   </td><td>𝜖</td></tr>
+<tr><td>𝜖    </td><td>+</td></tr>
+<tr><td>c2   </td><td>-</td></tr>
+<tr><td>     </td><td> </td></tr>
+<tr><td>c1   </td><td>+</td></tr>
+<tr><td>c2⋅c3</td><td>-</td></tr>
+<tr><td>c2⋅c4</td><td>-</td></tr>
+<tr><td>c2⋅c5</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counter-Example-4">Counter Example 4<a class="anchor-link" href="#Counter-Example-4">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The fourth counter example is $(c_2 \cdot c_4 \cdot c_6, +)$, with $c_6 = [0\ 10]$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇6      </td><td>𝜖</td></tr>
+<tr><td>𝜖       </td><td>+</td></tr>
+<tr><td>c2      </td><td>-</td></tr>
+<tr><td>        </td><td> </td></tr>
+<tr><td>c1      </td><td>+</td></tr>
+<tr><td>c2⋅c3   </td><td>-</td></tr>
+<tr><td>c2⋅c4   </td><td>-</td></tr>
+<tr><td>c2⋅c5   </td><td>-</td></tr>
+<tr><td>c2⋅c4⋅c6</td><td>+</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counter-Example-5">Counter Example 5<a class="anchor-link" href="#Counter-Example-5">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The fifth counter example is $(c_2 \cdot c_5 \cdot c_6, -)$.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable7</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇7      </td><td>𝜖</td></tr>
+<tr><td>𝜖       </td><td>+</td></tr>
+<tr><td>c2      </td><td>-</td></tr>
+<tr><td>        </td><td> </td></tr>
+<tr><td>c1      </td><td>+</td></tr>
+<tr><td>c2⋅c3   </td><td>-</td></tr>
+<tr><td>c2⋅c4   </td><td>-</td></tr>
+<tr><td>c2⋅c5   </td><td>-</td></tr>
+<tr><td>c2⋅c4⋅c6</td><td>+</td></tr>
+<tr><td>c2⋅c5⋅c6</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apply <code>make-consistent</code> to the table.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_table</span><span class="p">(</span><span class="n">ftable8</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+<tr><td>𝑇8      </td><td>𝜖</td><td>c6</td></tr>
+<tr><td>𝜖       </td><td>+</td><td>  </td></tr>
+<tr><td>c2      </td><td>-</td><td>  </td></tr>
+<tr><td>        </td><td> </td><td>  </td></tr>
+<tr><td>c1      </td><td>+</td><td>  </td></tr>
+<tr><td>c2⋅c3   </td><td>-</td><td>  </td></tr>
+<tr><td>c2⋅c4   </td><td>-</td><td>+ </td></tr>
+<tr><td>c2⋅c5   </td><td>-</td><td>  </td></tr>
+<tr><td>c2⋅c4⋅c6</td><td>+</td><td>  </td></tr>
+<tr><td>c2⋅c5⋅c6</td><td>-</td><td>  </td></tr>
+</tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note how the only valid path condition is $c_2 \cdot c_4$. All other concatenations of constraints in $S \cup R$ with constraints in $E$.</p>
 
 </div>
 </div>
